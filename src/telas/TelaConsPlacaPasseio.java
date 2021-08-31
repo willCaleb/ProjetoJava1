@@ -86,6 +86,13 @@ public class TelaConsPlacaPasseio implements ActionListener {
         tlCons.add(btnCons);
         tlCons.add(btnExcluir);
         tlCons.add(btnSair);
+        txtQntPas.setEditable(false);
+        txtMarca.setEditable(false);
+        txtModelo.setEditable(false);
+        txtCor.setEditable(false);
+        txtVelMax.setEditable(false);
+        txtQntPist.setEditable(false);
+        txtPoten.setEditable(false);
         
         btnCons.addActionListener(this);
         btnExcluir.addActionListener(this);
@@ -108,17 +115,9 @@ public class TelaConsPlacaPasseio implements ActionListener {
                 txtCor.setText(p.getCor());
                 txtVelMax.setText(Integer.toString(p.getVelocMax()));
                 txtQntPist.setText(Integer.toString(p.getMotor().getQntPist()));
-                txtPoten.setText(Integer.toString(p.getMotor().getPotencia()));
-                txtQntPas.setEditable(false);
-                txtMarca.setEditable(false);
-                txtModelo.setEditable(false);
-                txtCor.setEditable(false);
-                txtVelMax.setEditable(false);
-                txtQntPist.setEditable(false);
-                txtPoten.setEditable(false);
+                txtPoten.setText(Integer.toString(p.getMotor().getPotencia()));             
             }else{
-                JOptionPane.showMessageDialog(tlCons, "Placa já cadastrada","Atenção", JOptionPane.WARNING_MESSAGE);
-
+                JOptionPane.showMessageDialog(tlCons, "Placa não cadastrada","Atenção", JOptionPane.WARNING_MESSAGE);
             }
         }
         if(evt.getSource().equals(btnExcluir)){
@@ -129,14 +128,16 @@ public class TelaConsPlacaPasseio implements ActionListener {
                 if(bd.getBdPas().get(i).getPlaca().equalsIgnoreCase(p.getPlaca())){
                     bd.getBdPas().remove(i);
                     //System.out.println(placa);
-                    JOptionPane.showMessageDialog(tlCons, "Carro de passeio com a placa " + p.getPlaca() + " Excluido", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(tlCons, "Carro de passeio com a placa " + p.getPlaca() + 
+                            " Excluido", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    txtPlaca.setText("");
                     txtQntPas.setText("");
-                txtMarca.setText("");
-                txtModelo.setText("");
-                txtCor.setText("");
-                txtVelMax.setText("");
-                txtQntPist.setText("");
-                txtPoten.setText("");
+                    txtMarca.setText("");
+                    txtModelo.setText("");
+                    txtCor.setText("");
+                    txtVelMax.setText("");
+                    txtQntPist.setText("");
+                    txtPoten.setText("");
                 }
             }
         }

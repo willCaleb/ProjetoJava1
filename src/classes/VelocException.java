@@ -3,7 +3,7 @@ package classes;
 
 public class VelocException extends Exception{
     public VelocException (){
-        System.out.println("Velocidade acima dos limites nacionais!");
+        //System.out.println("Velocidade acima dos limites nacionais!");
     }
     public Carga exceptioCarga(Carga c){
         if(c.getVelocMax() > 90){

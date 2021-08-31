@@ -28,7 +28,6 @@ public class TelaCadCarga implements ActionListener{
     private JLabel lblMarca = new JLabel();
     private JLabel lblModelo = new JLabel();
     private JLabel lblCor = new JLabel();
-    private JLabel lblQntRodas = new JLabel();
     private JLabel lblVelMax = new JLabel();
     private JLabel lblQntPist = new JLabel();
     private JLabel lblPoten = new JLabel();
@@ -39,7 +38,6 @@ public class TelaCadCarga implements ActionListener{
     private JTextField txtMarca = new JTextField(15);
     private JTextField txtModelo = new JTextField(15);
     private JTextField txtCor = new JTextField(15);
-    private JTextField txtQntRodas = new JTextField(10);
     private JTextField txtVelMax = new JTextField(8);
     private JTextField txtQntPist = new JTextField(12);
     private JTextField txtPoten = new JTextField(12);
@@ -58,7 +56,6 @@ public class TelaCadCarga implements ActionListener{
         lblMarca.setText("Marca: ");                
         lblModelo.setText("Modelo");
         lblCor.setText("Cor: ");
-        lblQntRodas.setText("Qnt. Rodas: ");
         lblVelMax.setText("Velocidade max.: ");
         lblQntPist.setText("Qnt. Pistões");
         lblPoten.setText("Potência: ");
@@ -79,9 +76,7 @@ public class TelaCadCarga implements ActionListener{
         tlCad.add(lblModelo);
         tlCad.add(txtModelo);
         tlCad.add(lblCor);
-        tlCad.add(txtCor);
-        tlCad.add(lblQntRodas);
-        tlCad.add(txtQntRodas);
+        tlCad.add(txtCor);        
         tlCad.add(lblVelMax);
         tlCad.add(txtVelMax);
         tlCad.add(lblQntPist);
@@ -122,8 +117,7 @@ public class TelaCadCarga implements ActionListener{
                 JOptionPane.showMessageDialog(tlCad, "Placa já cadastrada!", "ERRO", JOptionPane.WARNING_MESSAGE);
                 limparCampos();
             }else{
-                bd.cadasCarga(c);
-                bd.impAllCargas();               
+                bd.cadasCarga(c);          
                 limparCampos();
             }
         }

@@ -106,7 +106,7 @@ public class TelaCadasPasseio implements ActionListener{
             try {
                 p.setVelocMax(Integer.parseInt(txtVelMax.getText()));
             } catch (VelocException ex) {
-                Logger.getLogger(TelaCadasPasseio.class.getName()).log(Level.SEVERE, null, ex);
+                ex.exceptionPasseio(p);
             }
             p.getMotor().setQntPist(Integer.parseInt(txtQntPist.getText()));
             p.getMotor().setPotencia(Integer.parseInt(txtPoten.getText()));

@@ -42,6 +42,7 @@ public class TelaImpPasseio implements ActionListener{
         btnImp.setText("Imprimir todos");
         btnImp.setMnemonic('I');
         btnImp.addActionListener(this);
+        tab.setSize(alt, 300);
         
         btnExc.setText("Excluir todos");
         btnExc.setMnemonic('E');

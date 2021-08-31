@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class TelaConsPlacaCarga implements ActionListener {
@@ -25,7 +26,6 @@ public class TelaConsPlacaCarga implements ActionListener {
     private JLabel lblMarca = new JLabel();
     private JLabel lblModelo = new JLabel();
     private JLabel lblCor = new JLabel();
-    private JLabel lblQntRodas = new JLabel();
     private JLabel lblVelMax = new JLabel();
     private JLabel lblQntPist = new JLabel();
     private JLabel lblPoten = new JLabel();
@@ -36,7 +36,6 @@ public class TelaConsPlacaCarga implements ActionListener {
     private JTextField txtMarca = new JTextField(15);
     private JTextField txtModelo = new JTextField(15);
     private JTextField txtCor = new JTextField(15);
-    private JTextField txtQntRodas = new JTextField(10);
     private JTextField txtVelMax = new JTextField(8);
     private JTextField txtQntPist = new JTextField(12);
     private JTextField txtPoten = new JTextField(12);
@@ -55,7 +54,6 @@ public class TelaConsPlacaCarga implements ActionListener {
         lblMarca.setText("Marca: ");                
         lblModelo.setText("Modelo");
         lblCor.setText("Cor: ");
-        lblQntRodas.setText("Qnt. Rodas: ");
         lblVelMax.setText("Velocidade max.: ");
         lblQntPist.setText("Qnt. Pistões");
         lblPoten.setText("Potência: ");
@@ -80,8 +78,6 @@ public class TelaConsPlacaCarga implements ActionListener {
         tlCons.add(txtModelo);
         tlCons.add(lblCor);
         tlCons.add(txtCor);
-        tlCons.add(lblQntRodas);
-        tlCons.add(txtQntRodas);
         tlCons.add(lblVelMax);
         tlCons.add(txtVelMax);
         tlCons.add(lblQntPist);
@@ -91,6 +87,14 @@ public class TelaConsPlacaCarga implements ActionListener {
         tlCons.add(btnCons);
         tlCons.add(btnExcluir);
         tlCons.add(btnSair);
+        txtTara.setEditable(false);
+        txtCarga.setEditable(false);
+        txtMarca.setEditable(false);
+        txtModelo.setEditable(false);
+        txtCor.setEditable(false);
+        txtVelMax.setEditable(false);
+        txtQntPist.setEditable(false);
+        txtPoten.setEditable(false);
         
         btnCons.addActionListener(this);
         btnExcluir.addActionListener(this);
@@ -107,7 +111,39 @@ public class TelaConsPlacaCarga implements ActionListener {
             c = bd.consultaCargaPlaca(c);
             if(c != null){
                 txtTara.setText(Integer.toString(c.getTara()));
+                txtCarga.setText(Integer.toString(c.getCargaMax()));
+                txtMarca.setText(c.getMarca());
+                txtModelo.setText(c.getModelo());
+                txtCor.setText(c.getCor());
+                txtVelMax.setText(Integer.toString(c.calcVel(c.getVelocMax())));
+                txtQntPist.setText(Integer.toString(c.getMotor().getQntPist()));
+                txtPoten.setText(Integer.toString(c.getMotor().getPotencia()));            
+            }else{
+                JOptionPane.showMessageDialog(tlCons, "Placa não cadastrada", "Atenção", JOptionPane.WARNING_MESSAGE);
             }
+        }
+        if(evt.getSource().equals(btnExcluir)){
+            Carga c = new Carga();
+            c.setPlaca(txtPlaca.getText());
+            for(int i = 0; i < bd.getBdCarga().size(); i++){
+                if(bd.getBdCarga().get(i).getPlaca().equalsIgnoreCase(c.getPlaca())){
+                    bd.getBdCarga().remove(i);
+                    JOptionPane.showMessageDialog(tlCons, "Carro de Carga com a placa " + c.getPlaca() + 
+                            " Excluido", "Atenção", JOptionPane.WARNING_MESSAGE);
+                    txtPlaca.setText("");
+                    txtTara.setText("");
+                    txtCarga.setText("");
+                    txtMarca.setText("");
+                    txtModelo.setText("");
+                    txtCor.setText("");
+                    txtVelMax.setText("");
+                    txtQntPist.setText("");
+                    txtPoten.setText("");   
+                }
+            }
+        }
+        if(evt.getSource().equals(btnSair)){
+            tlCons.dispose();
         }
     }
 }

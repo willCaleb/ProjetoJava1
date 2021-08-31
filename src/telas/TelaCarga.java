@@ -76,7 +76,8 @@ public class TelaCarga implements ActionListener {
             }
         }
         if(evt.getSource().equals(btnImp)){
-            TelaImpCarga tip = new TelaImpCarga();
+            TelaImpCarga tip = new TelaImpCarga(bd);
+            tip.mostrarTela();
         }
         if(evt.getSource().equals(btnSair)){
             tlCarga.dispose();
